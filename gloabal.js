@@ -12,3 +12,6 @@
 // const int = setInterval(() => {
 //     console.log('interval of 1 secs');
 // }, 1000);
+
+console.log(__dirname);
+console.log(__filename);
