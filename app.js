@@ -8,7 +8,7 @@ app.listen(3000);
 
 app.get('/', (req, res)=>{
     // res.send('<p>Home Page</p>');
-    res.render('index');
+    res.render('index', {title:'Home'});
 })
 
 
