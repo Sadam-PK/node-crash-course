@@ -1,11 +1,16 @@
 const express = require('express')
+const morgan = require('morgan')
 
 const app = express();
+
+//connect to mongodb
+const dbURI = 'mongodb+srv://sadam:<password>@cluster0.gaothmf.mongodb.net/?retryWrites=true&w=majority'
 
 app.set('view engine', 'ejs')
 
 app.listen(3000);
-
+app.use(morgan('dev'));
+app.use(express.static('public'))
 app.get('/', (req, res) => {
 
     const blogs = [
