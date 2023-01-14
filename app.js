@@ -17,16 +17,18 @@ app.use(morgan('dev'));
 
 app.use(express.static('public'))
 app.get('/', (req, res) => {
-
-    const blogs = [
-        { title: 'Hamza Finds Eggs', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-        { title: 'Asad Finds Stars', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-        { title: 'How to win games?', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-    ]
-
-    res.render('index', { title: 'Home', blogs });
+    res.redirect('/blogs')
 })
 
+app.get('/blogs', (req, res) => {
+    Blog.find()
+        .then((result) => {
+            res.render('index', { title: 'All Blogs', blogs: result })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
 
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' });
