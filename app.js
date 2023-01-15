@@ -52,6 +52,11 @@ app.post('/blogs', (req, res) => {
         })
 })
 
+
+app.get('/blogs/create', (req, res) => {
+    res.render('create', { title: 'Create New Blog' })
+})
+
 app.get('/blogs/:id', (req, res) => {
     const id = req.params.id
     Blog.findById(id)
@@ -63,20 +68,17 @@ app.get('/blogs/:id', (req, res) => {
         })
 })
 
-app.delete('/blogs:id', (req, res) => {
-    const id = req.params.id;
+app.delete('/blogs/:id', (req, res) => {
+    const id = req.params._id;
     Blog.findByIdAndDelete(id)
         .then((result) => {
-            res.json({redirect:'/blogs'})
+            res.json({ redirect: '/blogs' })
         })
         .catch((err) => {
             console.log(err);
         })
 })
 
-app.get('/blogs/create', (req, res) => {
-    res.render('create', { title: 'Create New Blog' })
-})
 
 app.use((req, res) => {
     res.status(404).render('404', { title: '404' })
